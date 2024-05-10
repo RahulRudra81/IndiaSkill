@@ -1,14 +1,17 @@
-const express=require('express')
-
-
+const {classes}=require('../models/Class')
 const { Students} = require('../models/Student')
 
 const  createStudent=async (req,res)=>{
     try{
-
-        const {_id,name,age,email,password,grade}=req.body
-        const newStudent=new Students({_id,name,age,email,password,grade})
+        const {name,age,email,password,grade,section}=req.body
+        const gradeRef=await classes.findOne({classNumber:grade,section:section})
+        if(!gradeRef){
+            res.status(401).send("No such class exist")
+        }
+        const grade_id=gradeRef._id
+        const newStudent=new Students({name,age,email,password, grade: grade_id})
         await newStudent.save()
+        await classes.findByIdAndUpdate(gradeRef._id, { $push: { students: newStudent._id } });
         res.send("new Student added")
     }catch(err){
         res.status(500).send(err);

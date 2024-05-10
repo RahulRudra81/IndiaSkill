@@ -1,11 +1,7 @@
 const mongoose=require('mongoose')
 
 const studentSchema=new mongoose.Schema({
-    _id:{
-        type:String,
-        required:true,
-        unique:true
-    },
+    
     name: {
         type:String,
         required: true
@@ -25,12 +21,13 @@ const studentSchema=new mongoose.Schema({
         ref:"Task"
     },
     grade:{
-        type:Number,
+        type:mongoose.Schema.ObjectId,
+        ref:"Classes",
         required:true
     },
-    class:{
-        type:mongoose.Schema.ObjectId,
-        ref:"Classes"
+    role:{
+        type:String,
+        default:"student"
     }
 })
 

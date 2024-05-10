@@ -1,10 +1,7 @@
 const mongoose=require('mongoose')
 
 const teacherSchema=new mongoose.Schema({
-    _id:{
-        type:String,
-        required:true
-    },
+    
     name:{
         type:String,
         required:true
@@ -20,6 +17,15 @@ const teacherSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    grade:[{
+        type:mongoose.Schema.ObjectId,
+        ref:"Classes",
+        required:true
+    }],
+    role:{
+        type:String,
+        default:"teacher"
     }
 })
 

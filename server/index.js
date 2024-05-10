@@ -7,6 +7,7 @@ const adminRoutes=require('./routes/AdminRoutes')
 const studentRoutes=require('./routes/StudentRoutes')
 const teacherRoutes=require('./routes/TeacherRoutes')
 const classRoutes=require('./routes/ClassRoutes')
+const authRoute=require('./routes/AuthRoute')
 const port=3000
 require('dotenv').config()
 const mongoose=require('mongoose')
@@ -29,6 +30,7 @@ app.use('/admin',adminRoutes)
 app.use('/student',studentRoutes)
 app.use('/teacher',teacherRoutes)
 app.use('/class',classRoutes)
+app.use('/auth',authRoute)
 
 app.listen(port,()=>{
     connect()
