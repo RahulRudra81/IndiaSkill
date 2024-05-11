@@ -2,11 +2,12 @@ const { Students } = require('../models/Student')
 const { Teacher } = require('../models/Teachers')
 const { Admin } = require('../models/Admin')
 var jwt = require('jsonwebtoken');
-const secret = process.env.SECRET_KEY
 
 
 const login = async (req, res) => {
+    const secret = process.env.SECRET_KEY
     const { email, password, type } = req.body;
+    
     var user;
     if (type === "admin") {
         user = await Admin.findOne({ email: email })
@@ -18,10 +19,13 @@ const login = async (req, res) => {
         user = await Teacher.findOne({ email: email })
     }
 
+    // console.log(user)
     if (!user) {
         res.status(401).send("User not exist")
+        return
     }
     if (password === user.password) {
+        
         try {
 
             const token = jwt.sign({
@@ -32,6 +36,9 @@ const login = async (req, res) => {
             console.log(err)
             res.status(401).send(err)
         }
+    }
+    else{
+        res.status(401).json({status:"passwordInvalid"})
     }
 }
 

@@ -1,14 +1,14 @@
 const express = require('express')
-
+const cors = require('cors');
 const app=express()
-
+app.use(cors());
 app.use(express.json())
 const adminRoutes=require('./routes/AdminRoutes')
 const studentRoutes=require('./routes/StudentRoutes')
 const teacherRoutes=require('./routes/TeacherRoutes')
 const classRoutes=require('./routes/ClassRoutes')
 const authRoute=require('./routes/AuthRoute')
-const port=3000
+const port=3001
 require('dotenv').config()
 const mongoose=require('mongoose')
 const mongourl=process.env.mongourl
