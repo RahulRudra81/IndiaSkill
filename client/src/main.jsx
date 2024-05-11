@@ -11,6 +11,7 @@ import Student from './pages/Student';
 import Teacher from './pages/Teacher';
 import Admin from './pages/Admin';
 import ErrorPage from './pages/Error';
+import ClassDetail from './pages/ClassDetail';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path:"/admin",
     element:<Admin/>
+  },
+  {
+    path:"/class/:id",
+    element:<ClassDetail/>
   }
 ]);
 

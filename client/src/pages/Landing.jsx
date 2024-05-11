@@ -17,6 +17,7 @@ const Landing = () => {
   const [option,setOption]=useState("student")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
+  const url=import.meta.env.VITE_BACKEND_URL
   const handleEmail=(e)=>{
     setEmail(e.target.value)
   }
@@ -24,7 +25,7 @@ const Landing = () => {
     setPassword(e.target.value)
   }
   const handleSubmit=async()=>{
-    const res= await fetch('http://localhost:3001/auth/',{
+    const res= await fetch(`${url}/auth/`,{
       method:'POST',
       headers: {
         'Content-Type': 'application/json',

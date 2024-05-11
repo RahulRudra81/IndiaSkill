@@ -27,5 +27,14 @@ const getStudent=async (req,res)=>{
         res.status(500).send(err)
     }
 }
+const studentDetail=async (req,res)=>{
+    try{
+        const studentId=req.params
+        const details=await Students.find({_id:studentId.id})
+        res.send(details)
+    }catch(err){
+        res.status(500).send(err)
+    }
+}
 
-module.exports={createStudent,getStudent}
+module.exports={createStudent,getStudent,studentDetail}

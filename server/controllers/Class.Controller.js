@@ -23,5 +23,14 @@ const getClass=async (req,res)=>{
         res.status(500).send(err)
     }
 }
+const ClassDetails=async (req,res)=>{
+    try{
+        const classId=req.params
+        const details=await classes.find({_id:classId.id})
+        res.send(details)
+    }catch(err){
+        res.status(500).send(err)
+    }
+}
 
-module.exports={createClass,getClass}
+module.exports={createClass,getClass,ClassDetails}
