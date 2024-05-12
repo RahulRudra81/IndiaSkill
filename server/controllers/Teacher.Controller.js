@@ -40,5 +40,24 @@ const getTeacher=async (req,res)=>{
         res.status(500).send(err)
     }
 }
+const teacherFromClass=async(req,res)=>{
+    try{
+        const classId=req.params
+        const teacher=await Teacher.find({grade:classId.id})
+        res.json(teacher)
+    }catch(err){
+        res.status(500).send(err)
+    }
+}
 
-module.exports={createTeacher,getTeacher}
+const teacherDetail=async(req,res)=>{
+    try{
+        const teacherId=req.params
+        const details=await Teacher.find({_id:teacherId.id})
+        res.send(details)
+    }catch(err){
+        res.status(500).send(err)
+    }
+}
+
+module.exports={createTeacher,getTeacher,teacherFromClass,teacherDetail}

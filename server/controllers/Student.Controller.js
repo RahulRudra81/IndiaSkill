@@ -37,4 +37,14 @@ const studentDetail=async (req,res)=>{
     }
 }
 
-module.exports={createStudent,getStudent,studentDetail}
+const studentFromClass=async(req,res)=>{
+    try{
+        const classId=req.params
+        const details=await Students.find({grade:classId.id})
+        res.send(details)
+    }catch(err){
+        res.status(500).send(err)
+    }
+}
+
+module.exports={createStudent,getStudent,studentDetail,studentFromClass}
